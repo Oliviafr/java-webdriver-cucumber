@@ -1,4 +1,5 @@
 // Created by Viacheslav (Slava) Skryabin 04/01/2018
+// Edited by Olivia Frumin 07/18/2019
 package definitions;
 
 import cucumber.api.java.en.Given;
@@ -11,9 +12,15 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Keys;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Locale;
+
 import static org.assertj.core.api.Assertions.*;
 import static support.TestContext.getDriver;
 
@@ -21,6 +28,11 @@ public class PredefinedStepDefs {
     @Given("^I open url \"([^\"]*)\"$")
     public void iOpenUrl(String url) {
         getDriver().get(url);
+    }
+
+    @Then("^I press Return")
+    public void iPressReturn() {
+        getDriver().findElement(By.xpath("//input[@name='q']")).sendKeys(Keys.RETURN);
     }
 
     @Then("^I resize window to (\\d+) and (\\d+)$")
@@ -97,10 +109,27 @@ public class PredefinedStepDefs {
         getDriver().findElement(By.xpath(xpath)).sendKeys(text);
     }
 
+    @Then("^I type int \"([^\"]*)\" into element with xpath \"([^\"]*)\"$")
+    public void iTypeIntoElementWithXpath(Integer number, String xpath) {
+        getDriver().findElement(By.xpath(xpath)).sendKeys(String.valueOf(number));
+    }
+
+    @And("^I wait for element with xpath \"([^\"]*)\" to not be present too$")
+    public void iWaitForElementWithXpathToNotBePresenttoo(String xpath) {
+        new WebDriverWait(getDriver(), 10, 200).until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))));
+    }
+
     @Then("^I click on element with xpath \"([^\"]*)\"$")
     public void iClickOnElementWithXpath(String xpath) {
         getDriver().findElement(By.xpath(xpath)).click();
     }
+
+//    @Then("^I double click on element using JavaScript with xpath \"([^\"]*)\"$")
+//    public void iDoubleClickOnElementUsingJavaScriptWithXpath(String xpath) {
+//        WebElement element = getDriver().findElement(By.xpath(xpath));
+//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+//        executor.executeScript("arguments[0].ondblclick();", element);
+//    }
 
     @Then("^I click on element using JavaScript with xpath \"([^\"]*)\"$")
     public void iClickOnElementUsingJavaScriptWithXpath(String xpath) {
@@ -130,6 +159,12 @@ public class PredefinedStepDefs {
 
     @Then("^element with xpath \"([^\"]*)\" should contain text \"([^\"]*)\"$")
     public void elementWithXpathShouldContainText(String xpath, String text) {
+        String actualText = getDriver().findElement(By.xpath(xpath)).getText();
+        assertThat(actualText).contains(text);
+    }
+
+    @And("^element with xpath \"([^\"]*)\" should contain text too \"([^\"]*)\"$")
+    public void elementWithXpathShouldContainTexttoo(String xpath, String text) {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
         assertThat(actualText).contains(text);
     }
@@ -223,4 +258,11 @@ public class PredefinedStepDefs {
     public void iMouseOverElementWithXpath(String xpath) {
         new Actions(getDriver()).moveToElement(getDriver().findElement(By.xpath(xpath))).perform();
     }
+
+    @Given("I say hello world")
+    public void iSayHelloWorld() {
+
+    }
+
+
 }
