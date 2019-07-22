@@ -21,7 +21,8 @@ Feature: Java feature
 
   @java5
     Scenario: Today date
-      Given the date of "This is a date today:"
+      Given the date of " "
+
 
 
 

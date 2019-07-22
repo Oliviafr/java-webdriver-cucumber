@@ -163,6 +163,17 @@ public class PredefinedStepDefs {
         assertThat(actualText).contains(text);
     }
 
+
+    @Then("^element with xpath \"([^\"]*)\" should contain text form function")
+    public void elementWithXpathShouldContainTextFromFunction(String xpath) {
+        String actualText = getDriver().findElement(By.xpath(xpath)).getText();
+        Date_custom date = new Date_custom();
+        String date_format;
+        date_format = date.TheDateOf("");
+        System.out.println(date_format);
+        assertThat(actualText).contains(date_format);
+    }
+
     @And("^element with xpath \"([^\"]*)\" should contain text too \"([^\"]*)\"$")
     public void elementWithXpathShouldContainTexttoo(String xpath, String text) {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();

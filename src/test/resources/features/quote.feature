@@ -218,14 +218,6 @@
       And I click on element with xpath "//select[@data-handler='selectYear']/option[@value='1981']"
       And I click on element with xpath "//td[@data-handler='selectDay']/a[text()='17']"
       And element with xpath "//input[@id='dateOfBirth']" should have attribute "value" as "11/17/1981"
-
-
-#      Then I click on element using JavaScript with xpath "//select[@class='ui-datepicker-month']/option[11]"
-#      Then I click on element using JavaScript with xpath "//select[@class='ui-datepicker-year']/option[@value='1980']"
-#      Then I click on element using JavaScript with xpath "//td[@data-handler='selectDay']/a[text()='17']"
-      Then I wait for 2 sec
-#    Then I click on element using JavaScript with xpath "//a[@class='ui-datepicker-prev ui-corner-all'][@data-handler='prev'][1]"
-#    Then I click on element using JavaScript with xpath "//*[@class=' ui-datepicker-week-end ']/a[contains(text(),'6')]"
       Then I click on element with xpath "//input[@name='agreedToPrivacyPolicy']"
       Then I wait for 2 sec
       Then I click on element using JavaScript with xpath "//button[@id='formSubmit']"
@@ -236,7 +228,8 @@
       Then element with xpath "//b[@name='countryOfOrigin'][contains(text(),'Monaco')]" should be displayed
       Then element with xpath "//b[@name='carMake'][contains(text(),'Toyota')]" should be displayed
 #    Should be dynamic date (date.today)
-      Then element with xpath "//b[@name='currentDate'][contains(text(),'07/21/2019')]" should be displayed
+      Then element with xpath "//b[@name='currentDate']" should contain text form function
+#      Then element with xpath "//b[@name='currentDate'][contains(text(),'07/21/2019')]" should be displayed
       Then element with xpath "//b[@name='email'][contains(text(),'test@dddd.com')]" should be displayed
       Then element with xpath "//b[@name='lastName'][contains(text(),'Kochler')]" should be displayed
       Then element with xpath "//b[@name='phone'][contains(text(),'1113338888')]" should be displayed

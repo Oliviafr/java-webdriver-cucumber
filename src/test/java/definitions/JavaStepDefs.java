@@ -48,6 +48,12 @@ public class JavaStepDefs {
         System.out.println("Here is my concatenation:" + str1 +" "+ str2.toLowerCase());
     }
 
+    @Given("Create object from Date_custom")
+    public void iCreateDate() {
+        Date_custom date = new Date_custom();
+    }
+
+
 //    //date today type localDate
 //    @Given("^today is")
 //    public LocalDate today_is() {
@@ -56,31 +62,6 @@ public class JavaStepDefs {
 //        return localDate;
 //    }
     //date today type Date
-
-    @Given("^today is")
-    public String Datetoday() {
-        LocalDate localDate = LocalDate.now();
-        Date datetoday = convertToDateViaSqlDate(localDate);
-        System.out.println(datetoday);
-        return datetoday.toString();
-    }
-
-    //convert localdate to date
-    private Date convertToDateViaSqlDate(LocalDate dateToConvert) {
-        return java.sql.Date.valueOf(dateToConvert);
-    }
-
-    //date format type date from string
-    @Given("^the date of (.*?)$")
-    public void the_date_of(String DateToday) throws Throwable {
-        String DateTodaystr = Datetoday();
-        System.out.println(DateToday + DateTodaystr);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        Date date;
-        date = format.parse(DateTodaystr);
-        System.out.println(date);
-    }
-
 
 }
 // Slava's def
