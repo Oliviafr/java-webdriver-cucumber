@@ -23,6 +23,27 @@ Feature: Java feature
     Scenario: Today date
       Given the date of " "
 
+  @java6
+    Scenario: I print url for "site" page
+      Given I print url for "quote" page
+
+  @java7
+   Scenario: I create array and print it
+    Given I print myarr
+
+  @java8
+   Scenario: I create array and print it
+    Given I print myarr[2] from Array
+
+  @java9
+   Scenario: Maps
+    Given I work with maps
+
+
+
+
+
+
 
 
 

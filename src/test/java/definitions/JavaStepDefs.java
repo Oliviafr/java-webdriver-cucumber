@@ -2,11 +2,14 @@ package definitions;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
+
+import static support.TestContext.getDriver;
+
 
 public class JavaStepDefs {
     @Then("I say Hello World One")
@@ -53,6 +56,68 @@ public class JavaStepDefs {
         Date_custom date = new Date_custom();
     }
 
+//    @Given(value = "I print url for {string} page")
+//    public void iPrintUrlForGooglePage(String str) {
+////        String google = null;
+//        if (str.contains("google"))
+//            System.out.println("https://www.google.com/" + str + "!");
+//        else if (str.contains("quote"))
+//        {
+//            System.out.println("https://skryabin.com/market/quote.html" + str +"!");
+//        }
+//        else
+//            System.out.println("not google! and not quote!");
+//
+//    }
+// Slava's example
+    @Given("I print url for {string} page")
+    public void iPrintUrlForPage(String site) {
+        if (site.equalsIgnoreCase("google")) {
+            System.out.println("https://www.google.com/");
+        } else if (site.equalsIgnoreCase("yahoo")){
+            System.out.println("https://www.yahoo.com/");
+        } else if (site.equalsIgnoreCase("quote")) {
+            System.out.println("https://skryabin.com/market/quote.html");
+        } else {
+            System.out.println("Unsupported site: " + site);
+        }
+    }
+
+    @Given("I print myarr")
+    public void iPrintMyarr() {
+        String[]myarr={"a","b","c","d"};
+        System.out.println(myarr[1]);
+        for(String item : myarr)
+        {
+            System.out.println(item);
+        }
+        ArrayList <String>  myarrlist = new ArrayList<>();
+        myarrlist.add("lala");
+        myarrlist.add("baba");
+        List <String> myarrList = List.of("al","bl","cl","dl");
+        for (String item : myarrList) {
+            System.out.println(item);
+        }
+    }
+
+    @Given("I print myarr[{int}] from Array")
+    public void iPrintMyarrFromArray(int arrnum) {
+        String[]myarr={"a","b","c","d"};
+        System.out.println(myarr[arrnum]);
+    }
+
+    @Given("I work with maps")
+    public void iWorkWithMaps() {
+//        Map <String, String> mymap = Map.of("key1","val1","key2","val2","key3","val3")
+        Map<String,String> map=new HashMap<>();
+        map.put("firstname", "John");
+        map.put("lastname", "Josopovich");
+//        System.out.println(map.get("firstname"));
+        System.out.println(map);
+    }
+
+
+
 
 //    //date today type localDate
 //    @Given("^today is")
@@ -64,6 +129,14 @@ public class JavaStepDefs {
     //date today type Date
 
 }
+
+
+
+
+
+
+
+
 // Slava's def
 
 //package definitions;
