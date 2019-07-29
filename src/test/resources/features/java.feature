@@ -39,6 +39,22 @@ Feature: Java feature
    Scenario: Maps
     Given I work with maps
 
+  @java10
+  Scenario: I go to the "site" page
+    Given Given I go to "quote" page
+    Then I wait for 1 sec
+
+  @java11
+  Scenario: SortArray
+    Given I sort my Array
+
+  @java12
+  Scenario: Timenow
+    Given I print time now "2:35"
+
+
+
+
 
 
 

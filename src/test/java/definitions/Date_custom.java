@@ -11,14 +11,14 @@ public class Date_custom {
     @Given("^today is")
     public Date Datetoday() {
         LocalDate localDate = LocalDate.now();
-//        System.out.println(datetoday);
+        /* System.out.println(datetoday); */
         return convertToDateViaSqlDate(localDate);
     }
-    //convert localdate to date
+    /* convert localdate to date */
     private Date convertToDateViaSqlDate(LocalDate dateToConvert) {
         return java.sql.Date.valueOf(dateToConvert);
     }
-    //date format type date from string
+    /* date format type date from string */
 
     @Given("^the date of (.*?)$")
     public String TheDateOf(String DateToday) {

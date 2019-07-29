@@ -228,7 +228,7 @@
       Then element with xpath "//b[@name='countryOfOrigin'][contains(text(),'Monaco')]" should be displayed
       Then element with xpath "//b[@name='carMake'][contains(text(),'Toyota')]" should be displayed
 #    Should be dynamic date (date.today)
-      Then element with xpath "//b[@name='currentDate']" should contain text form function
+      Then element with xpath "//b[@name='currentDate']" should contain text from function
 #      Then element with xpath "//b[@name='currentDate'][contains(text(),'07/21/2019')]" should be displayed
       Then element with xpath "//b[@name='email'][contains(text(),'test@dddd.com')]" should be displayed
       Then element with xpath "//b[@name='lastName'][contains(text(),'Kochler')]" should be displayed

@@ -1,6 +1,7 @@
 // Created by Viacheslav (Slava) Skryabin 04/01/2018
 package support;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,19 +24,24 @@ public class TestContext {
 
     private static WebDriver driver;
 
+    public static JavascriptExecutor getExecutor() {
+        //casting WebDriver
+        return (JavascriptExecutor) driver;
+    }
+
     public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void initialize() {
+    static void initialize() {
         initialize("chrome", false);
     }
 
-    public static void teardown() {
+    static void teardown() {
         driver.quit();
     }
 
-    public static void initialize(String browser, boolean isHeadless) {
+    private static void initialize( String browser, boolean isHeadless ) {
         String osName = System.getProperty("os.name");
         switch (browser) {
             case "chrome":

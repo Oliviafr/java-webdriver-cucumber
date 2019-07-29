@@ -164,7 +164,7 @@ public class PredefinedStepDefs {
     }
 
 
-    @Then("^element with xpath \"([^\"]*)\" should contain text form function")
+    @Then("^element with xpath \"([^\"]*)\" should contain text from function")
     public void elementWithXpathShouldContainTextFromFunction(String xpath) {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
         Date_custom date = new Date_custom();

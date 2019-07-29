@@ -3,6 +3,7 @@ package support;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -14,6 +15,8 @@ public class Hooks {
     public void scenarioStart() {
         TestContext.initialize();
         getDriver().manage().deleteAllCookies();
+//        Dimension dimension = new Dimension(1920,1024) ;
+//        getDriver().manage().window().setSize(dimension);
     }
 
     @After(order = 0)
