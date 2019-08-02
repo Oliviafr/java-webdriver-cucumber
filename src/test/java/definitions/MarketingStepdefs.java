@@ -133,6 +133,9 @@ public class MarketingStepdefs {
             case "google":
                 getDriver().get("https://www.google.com");
                 break;
+            case "yahoo":
+                getDriver().get("https://www.yahoo.com/");
+                break;
             default:
                 throw new RuntimeException("Unsupported page: " + page);
 

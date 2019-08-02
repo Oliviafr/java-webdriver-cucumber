@@ -7,6 +7,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.util.concurrent.TimeUnit;
+
 import static support.TestContext.getDriver;
 
 public class Hooks {
@@ -17,6 +19,7 @@ public class Hooks {
         getDriver().manage().deleteAllCookies();
 //        Dimension dimension = new Dimension(1920,1024) ;
 //        getDriver().manage().window().setSize(dimension);
+        getDriver().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
     }
 
     @After(order = 0)

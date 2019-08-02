@@ -2,14 +2,11 @@ package definitions;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.Collections;
 
-import static java.util.Arrays.*;
 import static java.util.Arrays.sort;
 import static support.TestContext.getDriver;
 
@@ -29,7 +26,7 @@ public class JavaStepDefs {
     }
 
     @Given("I act on {string} and {string}")
-    public void iActOnAnd(String str_1, String str_2) {
+    public void iActOnAnd( String str_1, String str_2 ) {
         System.out.println(str_1);
         System.out.println(str_2);
         System.out.println(str_1.toUpperCase());
@@ -41,7 +38,7 @@ public class JavaStepDefs {
     }
 
     @Given("I would like to compare {string} with {string}")
-    public void iWouldLikeToCompareWith(String str_1, String str_2) {
+    public void iWouldLikeToCompareWith( String str_1, String str_2 ) {
         System.out.println("I compare:" + str_1 + " and " + str_2);
         if (str_1.equals(str_2))
             System.out.println("equal!");
@@ -50,7 +47,7 @@ public class JavaStepDefs {
     }
 
     @Given("^I concatenate \"(.+)\" and \"(.+)\"$")
-    public void iContatenateStrings(String str1, String str2) {
+    public void iContatenateStrings( String str1, String str2 ) {
         System.out.println("Here is my concatenation:" + str1 + " " + str2.toLowerCase());
     }
 
@@ -61,7 +58,7 @@ public class JavaStepDefs {
 
     // Slava's example
     @Given("I print url for {string} page")
-    public void iPrintUrlForPage(String site) {
+    public void iPrintUrlForPage( String site ) {
         if (site.equalsIgnoreCase("google")) {
             System.out.println("https://www.google.com/");
         } else if (site.equalsIgnoreCase("yahoo")) {
@@ -104,7 +101,7 @@ public class JavaStepDefs {
 
 
     @Given("I print myarr[{int}] from Array")
-    public void iPrintMyarrFromArray(int arrnum) {
+    public void iPrintMyarrFromArray( int arrnum ) {
         String[] myarr = {"a", "b", "c", "d"};
 //        Immutable
         System.out.println(myarr[arrnum]);
@@ -121,7 +118,7 @@ public class JavaStepDefs {
     }
 
     @Given("Given I go to {string} page")
-    public void givenIGoToPage(String site) {
+    public void givenIGoToPage( String site ) {
         if (site.equalsIgnoreCase("google")) {
             getDriver().get("https://www.google.com/");
         } else if (site.equalsIgnoreCase("yahoo")) {
@@ -150,57 +147,183 @@ public class JavaStepDefs {
 //        for (int i = array.length - 1; i >= 0; i--)
 //            System.out.print(array[i] + " ");
 //        System.out.println();
-
         List<Integer> arraylist = List.of(1, 10, 2, 15, 57, 1);
         System.out.println(arraylist);
 //        int[]myarro= new int[]{1, 8, 4, 7, 5, 2};
-        SortMyArray(arraylist);
+//        SortMyArray(arraylist);
     }
 
-    private void SortMyArray( List<Integer> array ) {
-        boolean swapped = true;
-        int j = 0;
-        int tmp;
-        while (swapped) {
-            swapped = false;
-            j++;
-            for (int i = 0; i < array.size() - j; i++) {
-                if (array.get(i) > array.get(i + 1)) {
-                    tmp = array.get(i);
-                    array.set(i, array.get(i + 1));
-                    array.set(i + 1, tmp);
-                    swapped = true;
-
-                }
-            }
-        }
-//            public void bubbleSort(int[] array) {
-//                boolean swapped = true;
-//                int j = 0;
-//                int tmp;
-//                while (swapped) {
-//                    swapped = false;
-//                    j++;
-//                    for (int i = 0; i < array.length - j; i++) {
-//                        if (array[i] > array[i + 1]) {
-//                            tmp = array[i];
-//                            array[i] = array[i + 1];
-//                            array[i + 1] = tmp;
-//                            swapped = true;
-//                        }
-//                    }
+//    private void SortMyArray( List<Integer> array ) {
+//        int n = array.size();
+//        int temp = 0;
+//        for (int i = 0; i < n; i++) // Looping through the array length
+//        {
+//            System.out.println("Sort Pass Number " + (i + 1));
+//            for (int j = 1; j < (n - i); j++) {
+//                System.out.println("Comparing " + array.get(j - 1) + " and " + array.get(j));
+//                if (array.get(j - 1) > array.get(j)) {
+//                    Integer a = array.get(j - 1);
+//                    Integer b = array.get(j);
+//                    //swap elements
+////                    temp = array.get(j - 1);
+////                        a.set(array.get(j));
+////                        (array.get(j)).set(temp);
+//                    System.out.println(array.get(j) + " is greater than " + array.get(j - 1));
+//                    System.out.println("Swapping Elements: New Array After Swap");
+//                    System.out.println(array);
 //                }
 //            }
-    }
+//        }
+//    }
+//        static void bubbleSort(int[] array)
+//        {
+//            int n = array.length;
+//            int temp = 0;
+//            for(int i=0; i < n; i++) // Looping through the array length
+//            {  System.out.println("Sort Pass Number "+(i+1));
+//                for(int j=1; j < (n-i); j++)
+//                {
+//                    System.out.println("Comparing "+ array[j-1]+ " and " + array[j]);
+//                    if(array[j-1] > array[j])
+//                    {
+//
+//                        //swap elements
+//                        temp = array[j-1];
+//                        array[j-1] = array[j];
+//                        array[j] = temp;
+//                        System.out.println(array[j]  + " is greater than " + array[j-1]);
+//                        System.out.println("Swapping Elements: New Array After Swap");
+//                        PrintArray(array);
+//                    }
+//
+//                }
+//            }
+//
+//        }
+
 
     @Given("I print time now {string}")
     public void iPrintTimeNow( String pagetime ) {
         Time_custom time = new Time_custom();
         System.out.println(time.TimeNow(pagetime));
     }
+
+
+    @Given("I print array with sum zero for {int}")
+    public static int[] iPrintArrayWithSumZeroFor( int num ) {
+        int[] array = new int[num];
+        int i;
+        int sum = 0;
+        for (i = 0; i < array.length - 1; i++) {
+            array[i] = i;
+            sum += array[i];
+            System.out.println(i);
+        }
+        int laste = -sum;
+        array[num - 1] = laste;
+        System.out.println(laste);
+//        System.out.println(sum + laste);
+        System.out.println();
+        PrintArray(array);
+        return array;
+    }
+
+    private static void PrintArray( int[] arr ) {
+        for (int item : arr)
+            System.out.println(item);
+    }
+
+    private static void PrintArrayList( List<Integer> array ) {
+        for (Integer integer : array) {
+            System.out.println(integer);
+        }
+    }
+
+    private static void PrintArrayChar( char[] array ) {
+        for (char c : array) {
+            System.out.println(c);
+        }
+    }
+
+    private static int sumArray( int[] array ) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    @Given("I swap variables")
+    public void iSwapVariables() {
+        int x = 5;
+        int y = 3;
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
+
+        int temp = x;
+        x = y;
+        y = temp;
+
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
+
+    }
+
+    @Given("Create an array mult of {int}")
+    public ArrayList createAnArrayMultOf( int num ) {
+        ArrayList arr = new ArrayList();
+        for (int i = 1; i < num; i++) {
+            if (i % 2 == 0) {
+                arr.add(i);
+                System.out.println(i);
+            }
+        }
+        return arr;
+
+    }
+
+    @Given("I print console logs")
+    public void iPrintConsoleLogs() throws InterruptedException {
+        Thread.sleep(3000);
+        LogEntries logs;
+        logs = getDriver().manage().logs().get("browser");
+        for (LogEntry log : logs) {
+            System.out.println(log);
+        }
+        System.out.println("____________");
+    }
+
+    @Given("I write the code to exchange first and last numbers in an array")
+    public void iWriteTheCodeToExchangeFirstAndLastNumbersInAnArray() {
+        int[] array = new int[]{1, 8, 4, 7, 5, 2};
+        int n = array.length;
+        int temp = array[0];
+        array[0] = array[n - 1];
+        array[n - 1] = temp;
+        PrintArray(array);
+    }
+
+    @Given("I write a loop even numbers from {int} to {int}")
+    public void iWriteALoopEvenNumbersFrom( int num1, int num2 ) {
+        ArrayList arr = new ArrayList();
+        for (int i = num1; i <= num2; i++) {
+            if (i % 2 == 0) {
+                arr.add(i);
+            }
+        }
+        PrintArrayList(arr);
+    }
+
+    @Given("I write the code to print the characters from {int}rd position to {int}th in a string")
+    public void iWriteTheCodeToPrintTheCharactersFromRdPositionToThInAString( int pos1, int pos2 ) {
+        String str = "iWriteTheCodeToPrintTheCharactersFromRdPositionToThInAString";
+        System.out.println(str.substring(pos1 - 1, pos2));
+    }
 }
 
+//==================================================================
 
+// char[] chars = str.toCharArray();
 // Slava's def
 
 //package definitions;

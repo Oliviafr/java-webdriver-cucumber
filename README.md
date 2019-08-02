@@ -2,37 +2,6 @@
 
 Base framework for Java Webdriver automation with Cucumber
 
-#Scenarios for
-#  Google
-#  Yahoo
-#  Gibiru
-#  Duckduckgo
-#  Swisscows
-#  Startpage
-#  Yandex
-#  Boardreader
-#  Ecosia
-#  Searchencrypt
-#  Bing
-
-Code:
-https://skryabin.com/jul-8-java-bootcamp/code/predefined.feature
-
-Homework is to write (do at least 5 out of this list)
-@predefined3 scenarios for https://www.yahoo.com
-@predefined4 scenario for http://gibiru.com
-@predefined5 scenario for https://duckduckgo.com
-@predefined6 scenario for https://swisscows.com
-@predefined7 scenario for https://www.searchencrypt.com
-@predefined8 scenario for https://www.startpage.com
-@predefined9 scenario for https://www.yandex.com
-@predefined10 scenario for http://boardreader.com
-@predefined11 scenario for https://www.ecosia.org
-
-XPath cheatsheet: https://skryabin.com/jul-8-java-bootcamp/slides/Xpath_cheatsheet.pdf
-
-Send homework to slava@skryabin.com
-
 Scenario — a label for the behavior you’re going to describe
 
 Given steps are used to describe the initial context of the system - the scene of the scenario. It is typically something that happened in the past.
