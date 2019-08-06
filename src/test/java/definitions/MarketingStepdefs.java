@@ -10,6 +10,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import support.TestContext;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 import static support.TestContext.getExecutor;
@@ -230,6 +232,45 @@ public class MarketingStepdefs {
         System.out.println(date_format);
         assertThat(actualText).contains(date_format);
 //        System.out.println(assertThat(actualText).contains(date_format));
+    }
+
+    @When("I {string} third party agreement")
+    public void iThirdPartyAgreement( String accept ) throws Exception {
+        getDriver().findElement(By.xpath("//button[@id='thirdPartyButton']")).click();
+        switch (accept.toLowerCase()) {
+            case "accept":
+                getDriver().switchTo().alert().accept();
+                break;
+            case "reject":
+                getDriver().switchTo().alert().dismiss();
+                break;
+            default:
+                throw new Exception("Unkown action:"+accept);
+        }Thread.sleep(3000);
+    }
+
+    @And("I input {string} {string} as contact")
+    public void iInputAsContact( String fname, String lname ) {
+        getDriver().switchTo().frame(getDriver().findElement(By.xpath("//iframe[@name='additionalInfo']")));
+        getDriver().findElement(By.xpath("//input[@id='contactPersonName']")).sendKeys(fname +" "+lname);
+        getDriver().findElement(By.xpath("//input[@id='contactPersonPhone']")).sendKeys("123457756");
+        getDriver().switchTo().defaultContent();
+    }
+
+    @And("I validate document {string} present")
+    public void iValidateDocumentPresent( String docname ) {
+        Set<String> handlesbefore= getDriver().getWindowHandles();
+        System.out.println(handlesbefore);
+        String savedTWindowHandle = getDriver().getWindowHandle();
+        getDriver().findElement(By.xpath("//button[contains(@onclick, 'window')]")).click();
+
+        Set<String> handlesafter= getDriver().getWindowHandles();
+        System.out.println(handlesafter);
+        for(String handle : getDriver().getWindowHandles())
+            getDriver().switchTo().window(handle);
+        String actualText = getDriver().findElement(By.xpath("//body")).getText();
+        assertThat(actualText).containsIgnoringCase(docname);
+        getDriver().switchTo().window(savedTWindowHandle);
     }
 }
 

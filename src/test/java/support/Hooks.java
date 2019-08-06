@@ -20,6 +20,7 @@ public class Hooks {
 //        Dimension dimension = new Dimension(1920,1024) ;
 //        getDriver().manage().window().setSize(dimension);
         getDriver().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     }
 
     @After(order = 0)

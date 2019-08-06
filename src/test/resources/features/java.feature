@@ -89,8 +89,23 @@ Feature: Java feature
       Scenario: Coding challenge 6
         Given I write the code to print the characters from 3rd position to 8th in a string
 
+# Coding challenges
+#  1) Reverse a string (use .charAt())
+#  2) Print every 3rd character
+#  3) Check if number is divisible by 5 but not divisible by 4
+#
 
+  @java20
+  Scenario: Coding challenge 7
+    Given Reverse a string
 
+ @java21
+  Scenario: Coding challenge 8
+    Given Print every 3rd character
+
+  @java22
+    Scenario: Coding challenge 9
+      Given Check if number is divisible by 5 but not divisible by 4
 
 
 

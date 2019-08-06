@@ -20,6 +20,14 @@ Feature: Marketing app
     Then I change resolution to phone
     Then I change resolution to desktop
 
+  @market3
+    Scenario: Switch to cases
+      Given I go to "quote" page
+      When I "accept" third party agreement
+      And I input "John" "Doe" as contact
+      And I validate document "Document 2" present
+
+
 #  @market3
 #    Then I go back and forward,then refresh the page "google"
 

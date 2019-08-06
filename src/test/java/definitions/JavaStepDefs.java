@@ -137,44 +137,34 @@ public class JavaStepDefs {
 
     @Given("I sort my Array")
     public void iSortMyArray() {
-//        int[] array = new int[10];
-//        Random rand = new Random();
-//        for (int i = 0; i < array.length; i++)
-//            array[i] = rand.nextInt(100) + 1;
-////        Arrays.sort(array);
-//        System.out.println(Arrays.toString(array));
-//// in reverse order
-//        for (int i = array.length - 1; i >= 0; i--)
-//            System.out.print(array[i] + " ");
-//        System.out.println();
         List<Integer> arraylist = List.of(1, 10, 2, 15, 57, 1);
         System.out.println(arraylist);
 //        int[]myarro= new int[]{1, 8, 4, 7, 5, 2};
-//        SortMyArray(arraylist);
+        SortMyArray(arraylist);
     }
 
-//    private void SortMyArray( List<Integer> array ) {
-//        int n = array.size();
-//        int temp = 0;
-//        for (int i = 0; i < n; i++) // Looping through the array length
-//        {
-//            System.out.println("Sort Pass Number " + (i + 1));
-//            for (int j = 1; j < (n - i); j++) {
-//                System.out.println("Comparing " + array.get(j - 1) + " and " + array.get(j));
-//                if (array.get(j - 1) > array.get(j)) {
-//                    Integer a = array.get(j - 1);
-//                    Integer b = array.get(j);
-//                    //swap elements
-////                    temp = array.get(j - 1);
-////                        a.set(array.get(j));
-////                        (array.get(j)).set(temp);
-//                    System.out.println(array.get(j) + " is greater than " + array.get(j - 1));
-//                    System.out.println("Swapping Elements: New Array After Swap");
-//                    System.out.println(array);
-//                }
-//            }
-//        }
-//    }
+    private void SortMyArray( List<Integer> array ) {
+        int n = array.size();
+        int temp;
+        for (int i = 0; i < n; i++) // Looping through the array length
+        {
+            System.out.println("Sort Pass Number " + (i + 1));
+            for (int j = 1; j < (n - i); j++) {
+                System.out.println("Comparing " + array.get(j - 1) + " and " + array.get(j));
+                int c = array.get(i);
+                int d = array.get(j - 1);
+                //swap elements
+                if (d < c) {
+                    temp = d;
+                    array.set(j - 1, c);
+                    array.set(j, temp);
+                    System.out.println(array.get(j) + " is greater than " + array.get(j - 1));
+                    System.out.println("Swapping Elements: New Array After Swap");
+                }
+            }
+        }
+        PrintArrayList(array);
+    }
 //        static void bubbleSort(int[] array)
 //        {
 //            int n = array.length;
@@ -247,8 +237,8 @@ public class JavaStepDefs {
 
     private static int sumArray( int[] array ) {
         int sum = 0;
-        for (int i = 0; i < array.length; i++) {
-            sum += array[i];
+        for (int value : array) {
+            sum += value;
         }
         return sum;
     }
@@ -317,7 +307,45 @@ public class JavaStepDefs {
     @Given("I write the code to print the characters from {int}rd position to {int}th in a string")
     public void iWriteTheCodeToPrintTheCharactersFromRdPositionToThInAString( int pos1, int pos2 ) {
         String str = "iWriteTheCodeToPrintTheCharactersFromRdPositionToThInAString";
-        System.out.println(str.substring(pos1 - 1, pos2));
+//        System.out.println(str.substring(pos1 - 1, pos2));
+//        char[] chars = str.toCharArray();
+        for (int i = 2; i <= 7; i++) {
+            System.out.println(str.charAt(i));
+        }
+    }
+
+    @Given("Reverse a string")
+    public void reverseAString() {
+        String str = "AString";
+//        System.out.println(str.substring(pos1 - 1, pos2));
+//        char[] chars = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (int i = str.length() - 1; i >= 0; i--) {
+            sb.append(str.charAt(i));
+        }
+        System.out.println("Reversed string is:");
+        System.out.println(sb.toString());
+    }
+
+    @Given("Print every {int}rd character")
+    public void printEveryRdCharacter( int num ) {
+        String str = "Numberofcharacters";
+        for (int i=0;i<=str.length()-1;i++){
+            if ((i+1)%num==0){
+                if(i!=0){
+                    System.out.println(str.charAt(i));
+                }
+            }
+        }
+    }
+
+    @Given("Check if number is divisible by {int} but not divisible by {int}")
+    public void checkIfNumberIsDivisibleByButNotDivisibleBy( int d1, int d2 ) {
+        int num = 50;
+        if (num%d1==0&&num%d2!=0){
+            System.out.println(true);
+        }
+        else System.out.println(false);
     }
 }
 
