@@ -107,6 +107,10 @@ Feature: Java feature
     Scenario: Coding challenge 9
       Given Check if number is divisible by 5 but not divisible by 4
 
+  @java2
+      Scenario: Coding challenge 9
+        Given Check if number is divisible by 5 but not divisible by 4
+
 
 
 

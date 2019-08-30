@@ -13,8 +13,11 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -24,10 +27,20 @@ public class TestContext {
 
     private static WebDriver driver;
 
+    public static Map<String,String> getData(String fileName) throws FileNotFoundException {
+        String path = System.getProperty("user.dir")+ "/src/test/resources/data/"+fileName+".yml";
+//        /Users/ofrumin/IdeaProjects/java-webdriver-cucumber/src/test/resources/data/sender.yml
+        File file= new File(path);
+        FileInputStream stream = new FileInputStream(file);
+        return new Yaml().load(stream);
+    }
+
     public static JavascriptExecutor getExecutor() {
         //casting WebDriver
+
         return (JavascriptExecutor) driver;
     }
+
 
     public static WebDriver getDriver() {
         return driver;

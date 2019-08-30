@@ -1,14 +1,17 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
+import java.util.HashMap;
 
 import java.util.*;
 
 import static java.util.Arrays.sort;
 import static support.TestContext.getDriver;
+
 
 
 public class JavaStepDefs {
@@ -146,24 +149,30 @@ public class JavaStepDefs {
     private void SortMyArray( List<Integer> array ) {
         int n = array.size();
         int temp;
+        ArrayList sortedlist;
+        sortedlist = new ArrayList();
         for (int i = 0; i < n; i++) // Looping through the array length
         {
             System.out.println("Sort Pass Number " + (i + 1));
             for (int j = 1; j < (n - i); j++) {
                 System.out.println("Comparing " + array.get(j - 1) + " and " + array.get(j));
-                int c = array.get(i);
+                int c = array.get(j);
                 int d = array.get(j - 1);
-                //swap elements
-                if (d < c) {
-                    temp = d;
-                    array.set(j - 1, c);
-                    array.set(j, temp);
+//                Collections.sort(array);
+//                for (Integer item:array){
+//                    System.out.println(item);
+//                }
+//                swap elements
+                if (c < d) {
+                    temp = c;
+                    sortedlist.set(j - 1, c);
+                    sortedlist.set(j, temp);
                     System.out.println(array.get(j) + " is greater than " + array.get(j - 1));
                     System.out.println("Swapping Elements: New Array After Swap");
                 }
             }
         }
-        PrintArrayList(array);
+//        PrintArrayList(array);
     }
 //        static void bubbleSort(int[] array)
 //        {
@@ -205,9 +214,9 @@ public class JavaStepDefs {
         int i;
         int sum = 0;
         for (i = 0; i < array.length - 1; i++) {
-            array[i] = i;
+//            array[i] = i;
             sum += array[i];
-            System.out.println(i);
+//            System.out.println(i);
         }
         int laste = -sum;
         array[num - 1] = laste;
@@ -330,9 +339,9 @@ public class JavaStepDefs {
     @Given("Print every {int}rd character")
     public void printEveryRdCharacter( int num ) {
         String str = "Numberofcharacters";
-        for (int i=0;i<=str.length()-1;i++){
-            if ((i+1)%num==0){
-                if(i!=0){
+        for (int i = 0; i <= str.length() - 1; i++) {
+            if ((i + 1) % num == 0) {
+                if (i != 0) {
                     System.out.println(str.charAt(i));
                 }
             }
@@ -342,12 +351,88 @@ public class JavaStepDefs {
     @Given("Check if number is divisible by {int} but not divisible by {int}")
     public void checkIfNumberIsDivisibleByButNotDivisibleBy( int d1, int d2 ) {
         int num = 50;
-        if (num%d1==0&&num%d2!=0){
+        if (num % d1 == 0 && num % d2 != 0) {
             System.out.println(true);
-        }
-        else System.out.println(false);
+        } else System.out.println(false);
     }
-}
+
+//    @Given("I find the number with most occurrences in <data>, output should be this number. Try using hashmap")
+//    public void iFindTheNumberWithMostOccurrencesInDataOutputShouldBeThisNumberTryUsingHashmap(int [] array) {
+//
+//        int max = 0;
+//        for (int i = 0; i < array.length; i++) {
+//            int count = 0;
+//            for (int j = 0; j < array.length; j++) {
+//                if (array[i]==array[j])
+//                    count++;
+//            }
+//            if (count >= max)
+//                max = count;
+//        }
+//        System.out.println(max);
+//    }
+
+    @Given("I find the number with most occurrences in array, output should be this number. Try using hashmap")
+    public void iFindTheNumberWithMostOccurrencesInArrayOutputShouldBeThisNumberTryUsingHashmap() {
+        int[] array = new int[]{1, 2, 2, 3, 3, 3, 4, 5, 6, 7};
+        int max = 0;
+        int valueofcount = 0;
+//        for (int i = 0; i < array.length; i++) {
+//            int count = 0;
+//            for (int j = 0; j < array.length; j++) {
+//                if (array[i]==array[j])
+//                    count++;
+//            }
+//            if (count >= max)
+//                max = count;
+//                valueofcount=array[i];
+//        }
+//        System.out.println(max + " times, value " + valueofcount);
+
+
+        int count = 0;
+        Map<Integer, Integer> newhash = new HashMap<>();
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] == array[i - 1]) {
+                count++;
+//                System.out.println(count);
+//                newhash.put(count, array[i]);
+                valueofcount = array[i - 1];
+
+            } else {
+                if (count > max) {
+                    max = count;
+//                    newhash.put(count, array[i]);
+                }
+            }
+        }
+        System.out.println(max + " times, value " + valueofcount);
+        for (Map.Entry<Integer, Integer> entry : newhash.entrySet())
+            System.out.println("Key = " + entry.getKey() +
+                    ", Value = " + entry.getValue());
+
+    }
+
+
+
+//        HashMap hm = new HashMap();
+//        for (int i = 0; i < array.length; i++) {
+//            Double key = new Double(array[i]);
+//            if ( hm.containsKey(key) ) {
+//                value = hm.get(key);
+//                hm.put(key, value + 1);
+//            } else {
+//                hm.put(key, 1);
+//            }
+//        }
+//
+    }
+
+
+
+//    [1,2,2,3,3,3,4,5,6,7]Find the number with most occurrences, output should be this number. Try using hashmap
+
+
 
 //==================================================================
 

@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 //        tags = {"@predefined"} // same as VM option -Dcucumber.options="--tags @predefined"
 //        tags = {"@slackoverflow"} // same as VM option -Dcucumber.options="--tags @predefined"
 //        tags = {"@quote"} // same as VM option -Dcucumber.options="--tags @predefined"
-        tags = {"@java"} // same as VM option -Dcucumber.options="--tags @predefined"
+        tags = {"@java"} // same as VM option -Dcucumber.options="--tags @java"
 )
 public class TestRunner {
     @BeforeClass

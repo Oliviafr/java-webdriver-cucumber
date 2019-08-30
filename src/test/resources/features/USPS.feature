@@ -48,14 +48,46 @@ Feature: USPS testing
     Then I verify "20% OFF" sale
 
   @USPS6
-  Scenario: Verify location
-    Given I go to "usps" page new
-    When I perform "Passports" search
-    And I select "Passport Application" in results
-    And I click "Find a Post Office" button
-    And I select "94022" zip code within "10 miles" and search
-    Then I verify "MOUNTAIN VIEW" present in search results
-    When I open "MOUNTAIN VIEW" search results
-    Then I verify "211 HOPE ST" address, "9:00am - 12:00pm" appointment hours, "1:00pm - 3:00pm" photo hours
-    When I go back to list
-    Then I verify I'm on Find Locations search page
+  Scenario: UPS end to end
+    Given I allow flash
+    Given I go to "ups" page new
+    And I open Shipping menu
+    And I go to Create a Shipment
+    When I fill out origin shipment form
+    And I submit the shipment form
+    Then I verify origin shipment fields submitted
+    And I cancel the shipment form
+    Then I verify shipment form is reset
+
+  @USPS7
+    Scenario: UPS project_2
+      Given I go to "ups" page new
+      And I open Shipping menu
+      And I go to Create a Shipment
+      When I fill out second origin shipment form
+      And I submit the shipment form
+      Then I verify second origin shipment fields submitted
+      And  Put sample data to send
+      And I submit the shipment form
+      And I Select UPS Express Box – Small, "1" pound weight
+      And I submit the shipment form
+#      Then I verify total charges changed
+#      When I submit the shipment form
+#      And I select cheapest delivery option
+#      And I submit the shipment form
+#      And I set Saturday Delivery type
+#      Then I verify total charges changed
+#      When I submit the shipment form
+#      And I select Paypal payment type
+#      And I submit the shipment form
+#      Then I review all recorded details on the review
+#    page
+#      And I cancel the shipment form
+#      Then I verify shipment form is reset
+  @USPS8
+    Scenario: PO Box
+      Given I go to "usps" page new
+      When I go to PO Boxes under Track & Manage
+      And I reserve new PO box for "94022"
+      Then I verify that "Los Altos — Post Office™" present
+      And I verify that "Size 5-XL" PO Box is available in "Los Altos — Post Office™"
