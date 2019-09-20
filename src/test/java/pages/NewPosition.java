@@ -12,10 +12,17 @@ import support.TestContext;
 import static support.TestContext.getData;
 
 public class NewPosition extends Page {
-    @FindBy(xpath = "//input[@placeholder='Enter position Title']")
+//    @FindBy(xpath = "//input[@placeholder='Enter position Title']")
+//    private WebElement title;
+
+    @FindBy(xpath = "//label[@for='positionTitle']/../input")
     private WebElement title;
 
-    @FindBy(xpath = "//textarea[@placeholder='Enter detailed Description']")
+
+//    @FindBy(xpath = "//textarea[@placeholder='Enter detailed Description']")
+//    private WebElement description;
+
+    @FindBy(xpath = "//label[@for='positionDescription']/../textarea")
     private WebElement description;
 
     @FindBy(xpath = "//label[@for='positionAddress']/../input")
@@ -30,7 +37,10 @@ public class NewPosition extends Page {
     @FindBy(xpath = "//label[@for='positionState']/../select/option[6]")
     private WebElement stateCalifornia;
 
-    @FindBy(xpath = "//input[@placeholder='Zip code. Zip plus']")
+//    @FindBy(xpath = "//input[@placeholder='Zip code. Zip plus']")
+//    private WebElement zip;
+
+    @FindBy(xpath = "//label[@for='positionZip']/../input")
     private WebElement zip;
 
     @FindBy(xpath = "//input[@id='positionDateOpen']")

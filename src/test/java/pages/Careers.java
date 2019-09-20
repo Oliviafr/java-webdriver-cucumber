@@ -14,6 +14,11 @@ public class Careers extends Page {
     @FindBy(xpath = "//span[@class='logout-box']/a")
     private WebElement loggedInUser;
 
+
+    @FindBy(xpath = "//a[@href='/new_candidate']/button")
+    private WebElement apply;
+
+
     public CareersLogIn clickLogin() {
         loginButton.click();
         return new CareersLogIn();
@@ -22,4 +27,11 @@ public class Careers extends Page {
     public String getLoggedInUser() {
         return loggedInUser.getText();
     }
+
+    public NewCandidate clickApply() {
+        apply.click();
+        return new NewCandidate();
+    }
+
+
 }

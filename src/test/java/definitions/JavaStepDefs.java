@@ -5,13 +5,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
+
 import java.util.HashMap;
 
 import java.util.*;
 
 import static java.util.Arrays.sort;
 import static support.TestContext.getDriver;
-
 
 
 public class JavaStepDefs {
@@ -413,7 +413,288 @@ public class JavaStepDefs {
 
     }
 
+    @Given("Check if {string} is palindrom")
+    public boolean checkIfIsPalindrom( String word ) {
+//        String reversed = "";
+        int length = word.length();
+//        for(int i=length-1; i>=0;i--){
+//            reversed=reversed+word.charAt(i);
+//        }
+//        System.out.println(reversed);
+////        if(reversed.equals(word)){
+////            return true;
+////        }
+////        else return false;
+//        return word.equals(reversed);
+        int j = 0;
+        for (int i = length - 1; i > j; i--) {
+            if (word.charAt(j) != word.charAt(i))
+                return false;
+            System.out.println("YES");
+        }
+        j++;
+        return true;
+    }
 
+
+    @Given("I find two max numbers.")
+    public void iFindTwoMaxNumbers() {
+        int[]arr={3,5,7,1,4};
+        int max1 = 0;
+        int max2 = 0;
+        for(int n:arr){
+            if(max1<n){
+                max2=max1;
+                max1=n;
+            }else if(max2<n){
+                max2=n;
+            }
+        }System.out.println(max2 +" and " +max1);
+    }
+//skip multiples of 4
+    @Given("If number is multiple of {int}, it should print Fizz instead of number")
+    public void ifNumberIsMultipleOfItShouldPrintFizzInsteadOfNumber( int number ) {
+        int[]arr={2,9,4,25,8,6,12,20};
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]%3==0&&arr[i]%4!=0) {
+                System.out.print("Fizz"+" ");
+            }
+            else  if(arr[i]%5==0&&arr[i]%4!=0){
+                System.out.print("Buzz"+" ");
+            }
+            else  if(arr[i]%5==0&&arr[i]%3==0&&arr[i]%4!=0){
+                System.out.print("BuzzFizz"+" ");
+            }
+            else if(arr[i]%4!=0){
+                System.out.print(arr[i]+" ");
+            }
+
+        }
+    }
+
+    @Given("If number recognisable after loop")
+    public void ifNumberRecognisableAfterLoop() {
+
+        int j=0;
+        System.out.print(j);
+//        for(int i=0;i<=10;i++){
+//            j++;
+//        }
+        if(j==0){
+            j=100;
+        }
+        System.out.print(j);
+    }
+
+
+//    @Given("I solve coding challenges")
+//    public void iSolveCodingChallenges() {
+//        // write a function that would determine if the number is prime
+//        System.out.println(isPrime(17));
+//    }
+//
+//    public boolean isPrime(int num) {
+//        if (num < 2) {
+//            return false;
+//        }
+//
+//        if (num % 2 == 0 && num != 2) {
+//            return false;
+//        }
+//
+//        for (int i = 3; i <= Math.sqrt(num); i+=2) {
+//            System.out.println(num);
+//            System.out.print(Math.sqrt(num));
+//            if (num % i == 0) {
+//                return false;
+//            }
+//        }
+//        return true;
+//
+//    }
+//
+
+//    @Given("I solve coding challenges recursive\\/facytorial {int}")
+//    public int iSolveCodingChallengesRecursiveFacytorial( int num ) {
+//        if(num==0){
+//            return 1;
+//        }
+//        return num * iSolveCodingChallengesRecursiveFacytorial(num-1);
+//    }
+
+//    @Given("array binary search")
+//    public void arrayBinarySearch() {
+//        int[] arr={2,4,6,8,9,10,15,19};
+//        int num= 15;
+//        System.out.println("Contains num? " +search(arr, num));
+//    }
+//
+//    public boolean search(int arr[], int num)
+//    {
+//        for (int element:arr)
+//        {
+//            if (element==num)
+//            {
+//                return true;
+//            }
+//        }return false;
+//    }
+//
+
+
+    @Given("I solve coding challenges factorial {int}")
+    public int iSolveCodingChallengesFactorial( int num ) {
+        if(num==0){
+            return 1;
+        } System.out.println(num * iSolveCodingChallengesFactorial(num-1));
+        return num * iSolveCodingChallengesFactorial(num-1);
+
+
+    }
+//
+//    @Given("binary search")
+//    public boolean binarySearch(){
+//        int[] arr={2,4,6,8,9,10,15,19};
+//        int num= 15;
+//        //for sorted arr;
+//        int low = 0;
+//        int high =arr.length-1;
+//        while (low<=high){
+//            int middle =(low+high)/2;
+//            if(arr[middle]==num)
+//            {
+//                return true;
+//            }
+//            else if (arr[middle] < num)
+//            {
+//                low= middle +1;
+//            }
+//            else
+//            {
+//                high = middle -1;
+//            }
+//
+//        }return false;
+//    }
+
+    //==========================================
+    @Given("I solve coding challenges")
+    public void iSolveCodingChallenges() {
+        // 1. write a function that would exchange first and last numbers in an array
+
+        // 2. Write a function that accepts integer number and prints
+        //
+        //"divisible by 3" if number is divisible by 3
+        //"divisible by 4" if element is divisible by 4
+        //"divisible by 3 and 4" if divisible by 3 and 4
+
+        // 3. Write a function that prints all even numbers from 0 up to n
+
+        // 4. Write a function that finds the largest element of an array and test it
+
+        // 5. Reverse a string
+
+        // 6. Reverse words in a sentence
+
+        // 7. Write a function that sorts an array
+
+        // 8. Write a function that would find if any two elements in an array result in sum
+
+        // 9. Write a function that would create an array of duplicated numbers from original one
+
+        // 10. Write a function, accepts integer argument
+        //It should print all the numbers up to the argument
+        //BUT:
+        // if number is multiple of 3, it should print Fizz instead of number
+        // if number is multiple of 5, it should print Buzz instead of number
+        // If it is multiple of both 3 and 5, it should print FizzBuzz instead of number
+        //Result for 20:
+        //1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz
+
+        // write a function that would determine if the number is prime
+        System.out.println(isPrime(17));
+        int number = 17;
+        System.out.println("Is " + number + " prime? " + isPrime(number));
+
+        // find factorial using recursive algorithm
+        System.out.println(factorial(5));
+
+        // array search
+        int[] arr = {2, 4, 6, 8, 9, 10, 14, 15, 19};
+        int num = 14;
+
+        System.out.println("Contains num? " + search(arr, num));
+        // array binary search
+        System.out.println("Contains binary num? " + binarySearch(arr, num));
+    }
+
+    public boolean binarySearch(int arr[], int num) {
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int middle = (low + high) / 2;
+            if (arr[middle] == num) {
+                return true;
+            } else if (arr[middle] < num) {
+                low = middle + 1;
+            } else {
+                high = middle - 1;
+            }
+        }
+        return false;
+    }
+
+    public boolean search(int arr[], int num) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public int factorial(int num) {
+        if (num == 0) {
+            return 1;
+        }
+        return num * factorial(num - 1);
+    }
+
+    public boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        if (num % 2 == 0 && num != 2) {
+            return false;
+        }
+        for (int i = 3; i <= Math.sqrt(num); i+=2) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+//    public void print(String message, int num){
+//        System.out.println(message);
+//    }
+
+//    @Given("I solve coding challenges recursive")
+//    public int print iSolveCodingChallengesRecursive(String message,  int count) {
+//        if (count <= 0) {
+//            return;
+//        }
+//        System.out.println(message + " " +count);
+//        count --;
+//        print(message,count);
+//    }
+
+//
+//}
 
 //        HashMap hm = new HashMap();
 //        for (int i = 0; i < array.length; i++) {
@@ -426,12 +707,9 @@ public class JavaStepDefs {
 //            }
 //        }
 //
-    }
-
 
 
 //    [1,2,2,3,3,3,4,5,6,7]Find the number with most occurrences, output should be this number. Try using hashmap
-
 
 
 //==================================================================

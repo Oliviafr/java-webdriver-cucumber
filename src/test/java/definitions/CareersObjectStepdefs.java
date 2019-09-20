@@ -31,15 +31,44 @@ public class CareersObjectStepdefs {
 
     @When("I create {string} requisition")
     public void iCreateRequisition( String position ) throws FileNotFoundException, InterruptedException {
-        Positions createNew = new Positions();
-        createNew.searchPosition(position);
-        createNew.createPosition();
+        new Positions()
+                .searchPosition(position)
+                .createPosition();
         new NewPosition().createPosition(position);
+        Thread.sleep(10000);
     }
 
     @And("I verify {string} position created")
     public void iVerifyPositionCreated( String position ) throws FileNotFoundException {
         String actualPosition = new Positions().verifyPosition(position);
         assertThat(actualPosition).contains(getData(position).get("title"));
+    }
+
+
+    @And("I apply to {string} position for {string}")
+    public void iApplyToPositionFor( String position, String candidate ) throws FileNotFoundException {
+        new Careers()
+                .clickApply();
+        new NewCandidate()
+                .createCandidate(candidate);
+        new Positions()
+                .searchPosition(position)
+                .clickOnPosition(position)
+                .clickOnApply();
+    }
+
+    @Then("I verify {string} profile is created")
+    public void iVerifyProfileIsCreated( String candidate ) throws FileNotFoundException {
+        String actualName = new Careers().getLoggedInUser();
+        assertThat(actualName).contains(getData(candidate).get("last_name"));
+    }
+
+
+    @And("I see {string} position in my jobs")
+    public void iSeePositionInMyJobs( String myApply ) {
+        new Positions()
+                .clickOnPosition(myApply);
+        new NewCandidate()
+                .deleteCandidate();
     }
 }
