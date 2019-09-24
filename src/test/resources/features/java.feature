@@ -125,21 +125,35 @@ Feature: Java feature
     Given If number recognisable after loop
 
 
-  @java10
+  @java26
     Scenario: Challenges
     Given I solve coding challenges
 
-  @java11
+  @java27
     Scenario: Challenges 2
     Given I solve coding challenges factorial 5
 
-  @java11
+  @java28
     Scenario: Challenges 3
     Given array binary search
 
-  @java12
+  @java29
     Scenario: Challenges 4
     Given binary search
+
+  @java30
+  Scenario: Challenges 5
+    Given I charOccurance of character from "WebDriver"
+
+
+  @java30
+    Scenario: Challenges 6
+      Given I find uniqueElements
+
+
+  @java31
+      Scenario: Challenges 7
+        Given I find numberOfCharacters
 
 
 

@@ -20,7 +20,8 @@ public class Careers extends Page {
 
 
     public CareersLogIn clickLogin() {
-        loginButton.click();
+        click(loginButton);
+//        loginButton.click();
         return new CareersLogIn();
     }
 
@@ -29,7 +30,8 @@ public class Careers extends Page {
     }
 
     public NewCandidate clickApply() {
-        apply.click();
+        click(apply);
+//        apply.click();
         return new NewCandidate();
     }
 

@@ -35,7 +35,8 @@ public class Positions extends Page {
 
 
     //li[@class='list-item card list ']
-    public Positions searchPosition( String position ) {
+    public Positions searchPosition( String position ) throws InterruptedException {
+        Thread.sleep(3000);
         this.positionsearchtext.sendKeys(position);
         this.positionsearchbutton.click();
         return this;
@@ -67,7 +68,8 @@ public class Positions extends Page {
 ////                index = i;
 ////            }
 //        }
-        allFoundPositionsForCandidate.get(index).click();
+        click(allFoundPositionsForCandidate.get(index));
+//        allFoundPositionsForCandidate.get(index).click();
 //        position2.click();
         return new Position();
 

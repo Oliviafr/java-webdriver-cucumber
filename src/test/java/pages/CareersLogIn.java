@@ -1,10 +1,15 @@
 package pages;
 
 import cucumber.api.java.en.Given;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
+
+import static support.TestContext.getDriver;
 
 public class CareersLogIn extends Page {
     @FindBy(xpath="//label[@for='loginUsername']/../input")
@@ -27,14 +32,17 @@ public class CareersLogIn extends Page {
     }
 
     public Careers clickSubmit() {
-        submit.click();
+        click(submit);
+//        submit.click();
         return new Careers();
     }
 
     private Careers login( String username, String password ) {
         this.username.sendKeys(username);
         this.password.sendKeys(password);
-        submit.click();
+//        new WebDriverWait(getDriver(),5).until(ExpectedConditions.elementToBeClickable(submit));
+        click(submit);
+//        submit.click();
         return new Careers();
     }
 

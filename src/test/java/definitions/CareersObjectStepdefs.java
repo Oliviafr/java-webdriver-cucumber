@@ -46,7 +46,7 @@ public class CareersObjectStepdefs {
 
 
     @And("I apply to {string} position for {string}")
-    public void iApplyToPositionFor( String position, String candidate ) throws FileNotFoundException {
+    public void iApplyToPositionFor( String position, String candidate ) throws FileNotFoundException, InterruptedException {
         new Careers()
                 .clickApply();
         new NewCandidate()

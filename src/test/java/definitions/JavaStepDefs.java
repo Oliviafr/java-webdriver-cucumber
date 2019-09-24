@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 
@@ -439,34 +440,33 @@ public class JavaStepDefs {
 
     @Given("I find two max numbers.")
     public void iFindTwoMaxNumbers() {
-        int[]arr={3,5,7,1,4};
+        int[] arr = {3, 5, 7, 1, 4};
         int max1 = 0;
         int max2 = 0;
-        for(int n:arr){
-            if(max1<n){
-                max2=max1;
-                max1=n;
-            }else if(max2<n){
-                max2=n;
+        for (int n : arr) {
+            if (max1 < n) {
+                max2 = max1;
+                max1 = n;
+            } else if (max2 < n) {
+                max2 = n;
             }
-        }System.out.println(max2 +" and " +max1);
+        }
+        System.out.println(max2 + " and " + max1);
     }
-//skip multiples of 4
+
+    //skip multiples of 4
     @Given("If number is multiple of {int}, it should print Fizz instead of number")
     public void ifNumberIsMultipleOfItShouldPrintFizzInsteadOfNumber( int number ) {
-        int[]arr={2,9,4,25,8,6,12,20};
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]%3==0&&arr[i]%4!=0) {
-                System.out.print("Fizz"+" ");
-            }
-            else  if(arr[i]%5==0&&arr[i]%4!=0){
-                System.out.print("Buzz"+" ");
-            }
-            else  if(arr[i]%5==0&&arr[i]%3==0&&arr[i]%4!=0){
-                System.out.print("BuzzFizz"+" ");
-            }
-            else if(arr[i]%4!=0){
-                System.out.print(arr[i]+" ");
+        int[] arr = {2, 9, 4, 25, 8, 6, 12, 20};
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 3 == 0 && arr[i] % 4 != 0) {
+                System.out.print("Fizz" + " ");
+            } else if (arr[i] % 5 == 0 && arr[i] % 4 != 0) {
+                System.out.print("Buzz" + " ");
+            } else if (arr[i] % 5 == 0 && arr[i] % 3 == 0 && arr[i] % 4 != 0) {
+                System.out.print("BuzzFizz" + " ");
+            } else if (arr[i] % 4 != 0) {
+                System.out.print(arr[i] + " ");
             }
 
         }
@@ -475,13 +475,13 @@ public class JavaStepDefs {
     @Given("If number recognisable after loop")
     public void ifNumberRecognisableAfterLoop() {
 
-        int j=0;
+        int j = 0;
         System.out.print(j);
 //        for(int i=0;i<=10;i++){
 //            j++;
 //        }
-        if(j==0){
-            j=100;
+        if (j == 0) {
+            j = 100;
         }
         System.out.print(j);
     }
@@ -544,10 +544,11 @@ public class JavaStepDefs {
 
     @Given("I solve coding challenges factorial {int}")
     public int iSolveCodingChallengesFactorial( int num ) {
-        if(num==0){
+        if (num == 0) {
             return 1;
-        } System.out.println(num * iSolveCodingChallengesFactorial(num-1));
-        return num * iSolveCodingChallengesFactorial(num-1);
+        }
+        System.out.println(num * iSolveCodingChallengesFactorial(num - 1));
+        return num * iSolveCodingChallengesFactorial(num - 1);
 
 
     }
@@ -580,6 +581,7 @@ public class JavaStepDefs {
     //==========================================
     @Given("I solve coding challenges")
     public void iSolveCodingChallenges() {
+
         // 1. write a function that would exchange first and last numbers in an array
 
         // 2. Write a function that accepts integer number and prints
@@ -628,7 +630,25 @@ public class JavaStepDefs {
         System.out.println("Contains binary num? " + binarySearch(arr, num));
     }
 
-    public boolean binarySearch(int arr[], int num) {
+    //Find the number of characters in the word
+//    public int charOccurance() {
+//        char ch = 'e';
+//        int count = 0;
+//        Character character = 'c';
+//        String word = "WebDriver";
+//        for (int i = 0; i < word.length(); i++) {
+//            if (i == character) {
+//                count++;
+//            }
+//            return count;
+//
+//        }
+//    }
+
+
+//    }
+
+    public boolean binarySearch( int arr[], int num ) {
         int low = 0;
         int high = arr.length - 1;
 
@@ -645,7 +665,7 @@ public class JavaStepDefs {
         return false;
     }
 
-    public boolean search(int arr[], int num) {
+    public boolean search( int arr[], int num ) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == num) {
                 return true;
@@ -655,26 +675,114 @@ public class JavaStepDefs {
     }
 
 
-    public int factorial(int num) {
+    public int factorial( int num ) {
         if (num == 0) {
             return 1;
         }
         return num * factorial(num - 1);
     }
 
-    public boolean isPrime(int num) {
+    public boolean isPrime( int num ) {
         if (num < 2) {
             return false;
         }
         if (num % 2 == 0 && num != 2) {
             return false;
         }
-        for (int i = 3; i <= Math.sqrt(num); i+=2) {
+        for (int i = 3; i <= Math.sqrt(num); i += 2) {
             if (num % i == 0) {
                 return false;
             }
         }
         return true;
+    }
+
+
+    @Given("I charOccurance of character from {string}")
+    public int iCharOccuranceOfCharacterFrom( String word ) {
+        char ch = 'e';
+        int count = 0;
+        char[] arrchar = word.toCharArray();
+
+        Character character = 'c';
+
+        for (int i = 0; i < word.length(); i++) {
+            if (arrchar[i] == ch) {
+                count++;
+            }
+
+        }
+        System.out.println(count);
+
+        return count;
+    }
+
+    @Given("I find uniqueElements")
+    public void iFindUniqueElements() {
+        List<Object> result = new LinkedList<>();
+        List<Object> list1 = List.of(5, 3, 2, 6);
+        List<Object> list2 = List.of(8, 7, 6, 3);
+        boolean isFound = false;
+        for (Object item1 : list1) {
+            isFound = false;
+            for (Object item2 : list2) {
+                if (item1.equals(item2)) {
+                    isFound = true;
+                }
+            }
+            if (!isFound) {
+                result.add(item1);
+            }
+        }
+//        System.out.println(result);
+        for (Object item2 : list2) {
+            isFound = false;
+            for (Object item1 : list1)
+                if (item1.equals(item2)) {
+                    isFound = true;
+                }
+            if (!isFound) {
+                result.add(item2);
+            }
+        }
+        System.out.println(result);
+    }
+
+    @Given("I find numberOfCharacters")
+    public void iFindNumberOfCharacters() {
+        System.out.println(occurences("WebDriver"));
+    }
+
+    Map<Character, Integer> occurences( String str ) {
+        //WebDriver
+
+        Map<Character, Integer> mapOfChar = new LinkedHashMap<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            int count = 0;
+            if(mapOfChar.get(c)!=null){
+                continue;
+            }
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) == c) {
+                    count++;
+                }
+            }
+            mapOfChar.put(c,count);
+        }
+//        int count = 0;
+
+//        char[]arrchar = word.toCharArray();
+//
+//        Character character = 'c';
+//
+//        for (int i = 0; i < word.length(); i++) {
+//            if (arrchar[i] == ch) {
+//                count++;
+//            }
+
+        return mapOfChar;
     }
 }
 

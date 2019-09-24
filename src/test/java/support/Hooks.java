@@ -7,8 +7,11 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.io.FileNotFoundException;
+import java.security.Key;
 import java.util.concurrent.TimeUnit;
 
+import static support.TestContext.getData;
 import static support.TestContext.getDriver;
 
 public class Hooks {
@@ -22,6 +25,20 @@ public class Hooks {
         getDriver().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         getDriver().manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     }
+
+    @Before(order = 1, value = "@career2")
+     public void createPosition() throws FileNotFoundException {
+        new RestWrapper().logIn(getData("recruiter"));
+        new RestWrapper().createPosition(getData("automation"));
+    }
+
+
+    @After(order = 1, value = "@career2")
+    public void deletePosition() throws FileNotFoundException {
+        new RestWrapper().deletePositionById(RestWrapper.getLastPosition().get("id"));
+    }
+
+
 
     @After(order = 0)
     public void scenarioEnd(Scenario scenario) {

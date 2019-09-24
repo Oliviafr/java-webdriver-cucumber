@@ -9,7 +9,8 @@ public class Position extends Page {
     private WebElement applyPosition;
 
     public Positions clickOnApply (){
-        applyPosition.click();
+        click(applyPosition);
+//        applyPosition.click();
         return new Positions();
     }
 }
